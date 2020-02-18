@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro To Vue.js</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="nav-bar"></div>
+
+  <div id="app" style="margin-left: 10px">
+    <h1>Intro To Vue.js</h1>
+    <div>Courses test pages</div>
+    <ul>
+      <li v-for="course in courses">
+        <a :href="course.link + '/index.html'"  target="_blank">{{ course.label }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
