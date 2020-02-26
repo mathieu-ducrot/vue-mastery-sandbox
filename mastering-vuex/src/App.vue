@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavBar />
-    <router-view />
+    <!-- Ensure page get reloaded even when query param get updated with key data config -->
+    <router-view :key="$route.fullPath" />
   </div>
 </template>
 

@@ -1,14 +1,6 @@
 <template>
   <div>
-    <h1>Create Event, {{ user.name }}</h1>
-    <h2>State & Getters test :</h2>
-    <p>This event was created by {{ user.id }}</p>
-    <p>There are {{ catLength }} categories</p>
-    <p>{{ getEventById(2) }}</p>
-    <ul>
-      <li v-for="cat in categories" :key="cat">{{ cat }}</li>
-    </ul>
-    <h2>Mutations & Actions Pt.1:</h2>
+    <h1>Create an Event</h1>
     <form @submit.prevent="createEvent">
       <label>Select a category</label>
       <select v-model="event.category">
