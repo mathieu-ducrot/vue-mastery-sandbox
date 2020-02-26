@@ -77,7 +77,7 @@ export default {
     // getEvent() {
     //   return this.$store.getters.getEventById
     // },
-    ...mapGetters(['catLength', 'getEventById']),
+    ...mapGetters(['catLength']),
     ...mapState(['categories', 'user']) // <-- using object spread operator
   },
   components: {
@@ -96,7 +96,7 @@ export default {
   methods: {
     createEvent() {
       this.$store
-        .dispatch('createEvent', this.event)
+        .dispatch('event/createEvent', this.event)
         .then(() => {
           this.$router.push({
             name: 'event-show',
@@ -109,7 +109,7 @@ export default {
         })
     },
     createFreshEventObject() {
-      const user = this.$store.state.user
+      const user = this.$store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
 
       return {
