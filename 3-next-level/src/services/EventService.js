@@ -8,7 +8,8 @@ const apiClient = axios.create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 10000
 })
 
 /* NProgress example implementation with interceptors. We actually don't want that because of two caveats :
