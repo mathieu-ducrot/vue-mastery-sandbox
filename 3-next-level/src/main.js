@@ -7,6 +7,7 @@ import camelCase from 'lodash/camelCase'
 // https://github.com/rstacruz/nprogress
 import 'nprogress/nprogress.css'
 
+// https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components
 const requireComponent = require.context(
   // The relative path of the components folder
   './components',
