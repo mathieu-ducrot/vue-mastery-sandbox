@@ -11,7 +11,7 @@
       </router-link>
       |
     </template>
-    <template v-if="this.event.eventsTotal > this.page * this.perPage">
+    <template v-if="this.event.eventsTotal > this.page * this.event.perPage">
       <router-link :to="{ name: 'event-list', query: { page: page + 1 } }">
         Next Page
       </router-link>
@@ -22,31 +22,39 @@
 <script>
 import EventCard from '@/components/EventCard.vue'
 import { mapState } from 'vuex'
+import store from '@/store/index'
+
+function getPageEvents(routeTo, next) {
+  const currentPage = parseInt(routeTo.query.page) || 1
+  // we haven't access to this in beforeRouteEnter that why we are importing the store instead of using this.$store
+  store
+    .dispatch('event/fetchEvents', {
+      page: currentPage
+    })
+    .then(() => {
+      routeTo.params.page = currentPage
+      next()
+    })
+}
 
 export default {
   name: 'EventList.vue',
   components: {
     EventCard
   },
-  data() {
-    return {
-      perPage: 3
+  props: {
+    page: {
+      type: Number,
+      required: true
     }
   },
-  //https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks
-  created() {
-    this.$store.dispatch('event/fetchEvents', {
-      perPage: this.perPage,
-      page: this.page // <-- What page we're on
-    })
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next)
   },
-  computed: {
-    page() {
-      // What page we're currently on
-      return parseInt(this.$route.query.page) || 1
-    },
-    ...mapState(['event', 'user'])
-  }
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    getPageEvents(routeTo, next)
+  },
+  computed: mapState(['event', 'user'])
 }
 </script>
 
