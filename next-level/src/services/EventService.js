@@ -11,6 +11,21 @@ const apiClient = axios.create({
   }
 })
 
+/* NProgress example implementation with interceptors. We actually don't want that because of two caveats :
+ * Not optimal for multiple API calls at the same time (possible solution https://medium.com/@LoCascioNick/create-a-global-loading-progress-indicator-using-vuex-axios-and-nprogress-20451b33145a)
+ * Templates get rendered before the API call is returned
+ */
+import NProgress from 'nprogress'
+apiClient.interceptors.request.use(config => {
+  NProgress.start()
+  return config
+})
+
+apiClient.interceptors.response.use(response => {
+  NProgress.done()
+  return response
+})
+
 export default {
   // Pagination based on json-server behavior https://github.com/typicode/json-server#paginate
   getEvents(perPage, page) {
