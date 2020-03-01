@@ -19,24 +19,15 @@
 </template>
 
 <script>
+import { formFieldMixin } from '../mixins/formFieldMixin'
+
 export default {
   name: 'BaseSelect',
-  inheritAttrs: false,
+  mixins: [formFieldMixin],
   props: {
     options: {
       type: Array,
       required: true
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    value: [String, Number]
-  },
-  methods: {
-    updateValue(event) {
-      // https://developer.mozilla.org/fr/docs/Web/API/Event/target
-      this.$emit('input', event.target.value)
     }
   }
 }

@@ -11,16 +11,11 @@
 </template>
 
 <script>
+import { formFieldMixin } from '../mixins/formFieldMixin'
+
 export default {
   name: 'BaseInput',
-  inheritAttrs: false,
-  props: {
-    label: {
-      type: String,
-      default: ''
-    },
-    value: [String, Number]
-  },
+  mixins: [formFieldMixin],
   computed: {
     // Resolving precedence about input event when inheriting the input event for vuelidate
     listeners() {
@@ -28,12 +23,6 @@ export default {
         ...this.$listeners,
         input: this.updateValue // last definition take precedence so we can emit properly
       }
-    }
-  },
-  methods: {
-    updateValue(event) {
-      // https://developer.mozilla.org/fr/docs/Web/API/Event/target
-      this.$emit('input', event.target.value)
     }
   }
 }

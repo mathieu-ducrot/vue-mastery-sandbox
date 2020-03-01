@@ -10,6 +10,17 @@ import Vuelidate from 'vuelidate/src'
 
 Vue.use(Vuelidate)
 
+/* Global mixin exemple applied to every components
+ * Global mixin must be declare before the new Vue instance to work */
+// Vue.mixin({
+//   mounted() {
+//     console.log('I am mixed into every component.')
+//   }
+// })
+// However, the use cases for a global mixin are rare and it is highly recommended that you use global mixins with
+// extreme caution or simply avoid using them at all since they will be affecting literally every component at every
+// level of your app.
+
 // https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components
 const requireComponent = require.context(
   // The relative path of the components folder
