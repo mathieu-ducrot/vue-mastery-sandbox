@@ -7,6 +7,10 @@ import camelCase from 'lodash/camelCase'
 // https://github.com/rstacruz/nprogress
 import 'nprogress/nprogress.css'
 import Vuelidate from 'vuelidate/src'
+import DateFilter from './filters/date'
+
+// Global filter definition
+Vue.filter('date', DateFilter)
 
 Vue.use(Vuelidate)
 

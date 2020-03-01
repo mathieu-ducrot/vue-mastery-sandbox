@@ -7,7 +7,7 @@ import NProgress from 'nprogress'
 import store from '@/store/index'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
-import VuelidateExample from '../views/VuelidateExample'
+import Example from '../views/Example'
 
 Vue.use(VueRouter)
 
@@ -46,8 +46,8 @@ const routes = [
     }
   },
   {
-    path: '/vuelidate-example',
-    component: VuelidateExample
+    path: '/example',
+    component: Example
   },
   {
     path: '/404',

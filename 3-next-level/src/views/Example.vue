@@ -13,6 +13,9 @@
     <p v-if="!$v.email.required" class="errorMessage">Email is required.</p>
 
     <button type="submit" :disabled="$v.$invalid">Submit!</button>
+
+    <p>{{ comment | reply('bro') | shout | exclaim }}</p>
+    <!-- <div :id="id | formatId">Don't be like TrollBot</div> -->
   </form>
 </template>
 <script>
@@ -20,7 +23,19 @@ import { required, email } from 'vuelidate/lib/validators'
 export default {
   data() {
     return {
-      email: null
+      email: null,
+      comment: 'no one cares'
+    }
+  },
+  filters: {
+    shout(comment) {
+      return comment.toUpperCase()
+    },
+    exclaim(comment) {
+      return comment + '!!!'
+    },
+    reply(comment, name) {
+      return comment + ', ' + name
     }
   },
   validations: {
