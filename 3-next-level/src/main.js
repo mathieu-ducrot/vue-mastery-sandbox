@@ -6,6 +6,9 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 // https://github.com/rstacruz/nprogress
 import 'nprogress/nprogress.css'
+import Vuelidate from 'vuelidate/src'
+
+Vue.use(Vuelidate)
 
 // https://vuejs.org/v2/guide/components-registration.html#Automatic-Global-Registration-of-Base-Components
 const requireComponent = require.context(
