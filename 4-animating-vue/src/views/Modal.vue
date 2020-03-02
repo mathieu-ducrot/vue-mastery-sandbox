@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <h1>This is the modal page</h1>
+
     <button @click="toggleModal">Open</button>
     <!-- named transition -->
     <transition name="fade">
@@ -25,18 +27,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  // https://easings.net/fr
-  transition: opacity 0.5s ease-out;
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+<style lang="scss"></style>
