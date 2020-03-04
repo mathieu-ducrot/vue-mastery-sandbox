@@ -2,13 +2,25 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Modal</router-link> |
-      <router-link :to="{ name: 'list' }">List</router-link> |
-      <router-link to="/drawer">Drawer</router-link> |
-      <router-link to="/cards">Cards</router-link>
+      <router-link to="/list">Group Transitions (List)</router-link> |
+      <router-link to="/drawer">Velocity (Drawer)</router-link> |
+      <router-link to="/cards">Velocity (Cards)</router-link> |
+      <router-link to="/gsap-simple">GSAP Simple</router-link> |
+      <router-link to="/gsap-stagger">GSAP Stagger</router-link>
     </div>
-    <transition name="slide-fade" mode="out-in">
+    <template
+      v-if="
+        this.$router.currentRoute.name !== null &&
+          this.$router.currentRoute.name.includes('gsap')
+      "
+    >
       <router-view />
-    </transition>
+    </template>
+    <template v-else>
+      <transition name="slide-fade" mode="out-in">
+        <router-view />
+      </transition>
+    </template>
   </div>
 </template>
 

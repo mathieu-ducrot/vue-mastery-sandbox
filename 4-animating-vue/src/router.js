@@ -29,7 +29,19 @@ export default new Router({
       path: '/cards',
       name: 'cards',
       component: () =>
-        import(/* webpackChunkName: "list" */ './views/Cards.vue')
+        import(/* webpackChunkName: "cards" */ './views/Cards.vue')
+    },
+    {
+      path: '/gsap-simple',
+      name: 'gsap-simple',
+      component: () =>
+        import(/* webpackChunkName: "simple" */ './views/Simple.vue')
+    },
+    {
+      path: '/gsap-stagger',
+      name: 'gsap-stagger',
+      component: () =>
+        import(/* webpackChunkName: "stagger" */ './views/Stagger.vue')
     }
   ]
 })
