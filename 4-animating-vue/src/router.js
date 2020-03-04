@@ -48,6 +48,12 @@ export default new Router({
       name: 'gsap-state',
       component: () =>
         import(/* webpackChunkName: "stagger" */ './views/State.vue')
+    },
+    {
+      path: '/gsap-timeline',
+      name: 'gsap-timeline',
+      component: () =>
+        import(/* webpackChunkName: "stagger" */ './views/Timeline.vue')
     }
   ]
 })
