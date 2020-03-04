@@ -42,6 +42,12 @@ export default new Router({
       name: 'gsap-stagger',
       component: () =>
         import(/* webpackChunkName: "stagger" */ './views/Stagger.vue')
+    },
+    {
+      path: '/gsap-state',
+      name: 'gsap-state',
+      component: () =>
+        import(/* webpackChunkName: "stagger" */ './views/State.vue')
     }
   ]
 })

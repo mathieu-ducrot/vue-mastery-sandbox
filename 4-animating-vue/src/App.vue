@@ -6,7 +6,8 @@
       <router-link to="/drawer">Velocity (Drawer)</router-link> |
       <router-link to="/cards">Velocity (Cards)</router-link> |
       <router-link to="/gsap-simple">GSAP Simple</router-link> |
-      <router-link to="/gsap-stagger">GSAP Stagger</router-link>
+      <router-link to="/gsap-stagger">GSAP Stagger</router-link> |
+      <router-link to="/gsap-state">GSAP State</router-link>
     </div>
     <template
       v-if="
