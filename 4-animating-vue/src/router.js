@@ -54,6 +54,12 @@ export default new Router({
       name: 'gsap-timeline',
       component: () =>
         import(/* webpackChunkName: "stagger" */ './views/Timeline.vue')
+    },
+    {
+      path: '/gsap-master',
+      name: 'gsap-master',
+      component: () =>
+        import(/* webpackChunkName: "stagger" */ './views/Master.vue')
     }
   ]
 })

@@ -8,7 +8,8 @@
       <router-link to="/gsap-simple">GSAP Simple</router-link> |
       <router-link to="/gsap-stagger">GSAP Stagger</router-link> |
       <router-link to="/gsap-state">GSAP State</router-link> |
-      <router-link to="/gsap-timeline">GSAP Timeline</router-link>
+      <router-link to="/gsap-timeline">GSAP Timeline</router-link> |
+      <router-link to="/gsap-master">GSAP Master</router-link>
     </div>
     <template
       v-if="
