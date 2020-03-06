@@ -15,7 +15,6 @@ export default new Router({
       component: Board,
       children: [
         {
-          // Child route for the Board view
           path: 'task/:id',
           name: 'task',
           component: Task
