@@ -41,7 +41,6 @@ export default new Vuex.Store({
     },
     UPDATE_TASK (state, { task, key, value }) {
       task[key] = value
-      // Vue.set(task, key, value)
     },
     MOVE_TASK (state, { fromTasks, toTasks, fromTaskIndex, toTaskIndex }) {
       const taskToMove = fromTasks.splice(fromTaskIndex, 1)[0]
