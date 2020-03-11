@@ -1,4 +1,4 @@
-# 6-unit-testing
+# unit-testing-vue
 
 ## Project setup
 ```
