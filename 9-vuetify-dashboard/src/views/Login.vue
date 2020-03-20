@@ -5,17 +5,14 @@
     </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field
-          label="Username"
-          prepend-icon="mdi-account-circle"
-        ></v-text-field>
+        <v-text-field label="Username" prepend-icon="mdi-account-circle" />
         <v-text-field
           :type="showPassword ? 'text' : 'password'"
           label="Password"
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
-        ></v-text-field>
+        />
       </v-form>
     </v-card-text>
     <v-divider></v-divider>
@@ -29,7 +26,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'LoginPage',
   data() {
     return {
       showPassword: false
@@ -38,4 +35,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style></style>
