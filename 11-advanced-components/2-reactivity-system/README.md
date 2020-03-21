@@ -1,6 +1,6 @@
 # 11-advanced-components
 
-## 1-reactivity-system
+## 2-reactivity-system
 
 ```
 node 
