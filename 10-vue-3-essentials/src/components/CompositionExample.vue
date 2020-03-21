@@ -12,20 +12,31 @@
 </template>
 
 <script>
-import { ref, computed } from '@vue/composition-api'
+import { reactive, computed, toRefs } from '@vue/composition-api'
 export default {
   setup() {
-    const capacity = ref(3)
-    const attending = ref(['Tim', 'Bob', 'Joe'])
+    // const capacity = ref(3)
+    // const attending = ref(['Tim', 'Bob', 'Joe'])
+    //
+    // const spacesLeft = computed(() => {
+    //   return capacity.value - attending.value.length
+    // })
 
-    const spacesLeft = computed(() => {
-      return capacity.value - attending.value.length
+    // Alternate reactive syntax
+    const event = reactive({
+      capacity: 4,
+      attending: ['Tim', 'Bob', 'Joe'],
+      spacesLeft: computed(() => {
+        return event.capacity - event.attending.length
+      })
     })
 
     function increaseCapacity() {
-      capacity.value++
+      event.capacity++
     }
-    return { capacity, attending, spacesLeft, increaseCapacity }
+
+    // return toRefs(event) if destructuring was not needed directly return the toRefs
+    return { ...toRefs(event), increaseCapacity }
   }
 }
 </script>
