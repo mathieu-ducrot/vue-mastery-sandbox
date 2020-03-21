@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Function</title>
+</head>
+<body>
+<div id="app">
+  <custom-header :level="mylevel">Dynamic Header Tag Level of {{ mylevel }}</custom-header>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // Documentation Example https://vuejs.org/v2/guide/render-function.html
+  Vue.component('custom-header', {
+    props: ['level'],
+    render: function (h) {
+      return h(
+        'h' + this.level,   // tag name
+        this.$slots.default // array of children
+      )
+    },
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      mylevel: 2, // This could be dynamic
+    }
+  })
+</script>
+</body>
+</html>
