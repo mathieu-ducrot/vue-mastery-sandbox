@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Function</title>
+</head>
+<body>
+<div id="app">
+  <smart-table :items='vehicles' />
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const EmptyTable = {
+    template: `<h1>Nothing Here</h1>`
+  }
+  const NormalTable = { // Normally this would be more complex
+    template: `<h1>Normal Table</h1>`
+  }
+
+  Vue.component('smart-table', {
+    functional: true,
+    props: { items: { type: Array } },
+    render(h, context) {
+      if (context.props.items.length > 0 ) {  // Delegate
+        return h(NormalTable, context.data, context.children)
+      } else {
+        return h(EmptyTable, context.data, context.children)
+      }
+    }
+    // ES6 Version with destructuring
+    // render(h, { props, data, children }) {
+    //   if (props.items.length > 0 ) {
+    //     return h(NormalTable, data, children)
+    //   } else {
+    //     return h(EmptyTable, data, children)
+    //   }
+    // }
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      vehicles: [ 'Fiat', 'Toyota', 'BMW' ]
+    }
+  })
+</script>
+</body>
+</html>

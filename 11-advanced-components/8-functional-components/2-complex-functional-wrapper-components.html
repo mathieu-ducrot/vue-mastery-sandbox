@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Function</title>
+</head>
+<body>
+<div id="app">
+  <smart-list :items='vehicles' />
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // https://vuejs.org/v2/guide/render-function.html#Functional-Components
+  const EmptyList = {
+    template: '<h1>EmptyList</h1>'
+  }
+  const TableList = {
+    template: '<h1>TableList</h1>'
+  }
+  const OrderedList = { /* ... */ }
+  const UnorderedList = { /* ... */ }
+
+  Vue.component('smart-list', {
+    functional: true,
+    props: {
+      items: {
+        type: Array,
+        required: true
+      },
+      isOrdered: Boolean
+    },
+    render: function (createElement, context) {
+
+      // This function returns which component to use to render
+      function appropriateListComponent () {
+        var items = context.props.items
+
+        if (items.length === 0)           return EmptyList
+        if (typeof items[0] === 'object') return TableList
+        if (context.props.isOrdered)      return OrderedList
+
+        return UnorderedList
+      }
+
+      // Now call the appropriate component.
+      // Remember that h is short-hand for createElement
+      return createElement(
+        appropriateListComponent(),
+        context.data,
+        context.children
+      )
+    },
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      vehicles: [
+        {
+          name: 'Fiat',
+          releaseDate: '1960'
+        },
+        {
+          name: 'Toyota'
+        },
+        {
+          name: 'BMW'
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>

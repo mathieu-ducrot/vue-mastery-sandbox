@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Function</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const GreetComponent = {
+    template: '<h1>Hello There</h1>'
+  }
+  var app = new Vue({
+    el: '#app',
+    render(h) {
+      return h(GreetComponent)
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped Slot</title>
+</head>
+<body>
+<div id="app">
+  <products-list :products="products"></products-list>
+  <products-list :products="products">
+    <!-- <template slot="product" slot-scope="slotProps">-->
+    <!--   <img :src="slotProps.product.image" /> {{ slotProps.product.name.toUpperCase() }}-->
+    <!-- </template>-->
+
+    <!-- Destructuring version -->
+    <template slot="product" slot-scope="{ product }">
+      <img :src="product.image" /> {{ product.name.toUpperCase() }}
+    </template>
+  </products-list>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component('products-list', {
+    props: {
+      products: {
+        type: Array,
+        required: true
+      }
+    },
+    template: `
+    <ul>
+      <li v-for="product in products">
+        <slot name="product" :product="product" >
+            {{ product.name }}
+        </slot>
+      </li>
+    </ul>`
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      products: [{
+        name: 'Magnifying Glass',
+        image: './assets/magnifying_glass.png'
+      }, {
+        name: 'Light Bulb',
+        image: './assets/light_bulb.png'
+      }]
+    }
+  })
+</script>
+</body>
+</html>
