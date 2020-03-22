@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped Slot</title>
+</head>
+<body>
+<div id="app">
+  <div v-for="movie in movies">
+    <movie-poster :image="movie.image" :title="movie.title" :length="movie.length" :watched="movie.watched"></movie-poster>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component('movie-poster', {
+    /* When defining props ask these questions :
+     *   What data type(s) can be expected?
+     *   Is the prop required?
+     *   Can you provide default data to account for most scenario?
+     */
+    props: {
+      image: {
+        type: String,
+        default: './images/placeholder.png'
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      length: {
+        type: [Number, String],
+        default: 90
+      },
+      watched: {
+        type: Boolean,
+        default: false
+      },
+    },
+    template: `
+    <div>
+      <section>
+        <img :src="image" width="60"/>
+        <h1>{{ title }}</h1>
+        <p>{{ length }} <span v-if="watched">✅</span></p>
+      </section>
+    </div>`
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      movies: [
+        {
+          image: "./images/hero.svg",
+          title: "Framework",
+          length: "54:43",
+          watched: true,
+        },
+        {
+          title: "Default",
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>
