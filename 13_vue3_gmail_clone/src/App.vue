@@ -1,13 +1,44 @@
 <template>
   <h1>VMail Inbox</h1>
+
+  <table class="mail-table">
+    <tbody>
+    <tr v-for="email in unarchivedEmails"
+        :key="email.id"
+        :class="[email.read ? 'read': '', 'clickable']"
+        @click="email.read = true">
+      <td>
+        <input type="checkbox" />
+      </td>
+      <td>{{email.from}}</td>
+      <td>
+        <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
+      </td>
+      <td class="date">{{email.sentAt}}</td>
+      <td><button @click="email.archived = true">Archive</button></td>
+    </tr>
+    </tbody>
+  </table>
 </template>
-  
+
 <script>
+import { format } from 'date-fns';
 
 export default {
   name: 'App',
+  computed: {
+    unarchivedEmails(){
+      return this.sortedEmails.filter(e => !e.archived)
+    },
+    sortedEmails(){
+      return this.emails.sort((e1, e2) => {
+        return e1.sentAt < e2.sentAt ? 1 : -1
+      })
+    }
+  },
   data(){
     return {
+      format,
       "emails": [
         {
           "id": 1,
