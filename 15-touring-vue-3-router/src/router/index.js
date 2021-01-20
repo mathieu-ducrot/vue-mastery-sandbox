@@ -14,7 +14,7 @@ const routes = [
     props: route => ({ page: parseInt(route.query.page) || 1 })
   },
   {
-    path: '/event/:id',
+    path: '/events/:id',
     name: 'EventLayout',
     props: true,
     component: EventLayout,
@@ -37,9 +37,27 @@ const routes = [
     ]
   },
   {
-    path: '/about',
+    // Exemple de redirect pour des nested routes (Wildcard)
+    path: '/event/:afterEvent(.*)',
+    redirect: to => {
+      return { path: '/events/' + to.params.afterEvent }
+    }
+    // # Version Dynamic Segments
+    // path: '/event/:id',
+    // redirect: to => {
+    //   return { name: 'EventDetails', params: { id: to.params.id } }
+    // }
+    // # Version simplifié car le paramètre id est automatiquement passé au redirect
+    // path: '/event/:id',
+    // redirect: () => {
+    //   return { name: 'EventDetails' }
+    // }
+  },
+  {
+    path: '/about-us',
     name: 'About',
-    component: About
+    component: About,
+    alias: '/about'
   }
 ]
 
