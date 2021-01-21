@@ -1,23 +1,22 @@
 <template>
   <table class="mail-table">
     <tbody>
-    <tr v-for="email in unarchivedEmails"
-        :key="email.id"
-        :class="['clickable', email.read ? 'read' : '']"
-        @click="openEmail(email)">
-      <td>
-        <input type="checkbox" />
-      </td>
-      <td>{{email.from}}</td>
-      <td>
-        <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
-      </td>
-      <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
-      <td><button @click="archiveEmail(email)">Archive</button></td>
-    </tr>
+      <tr v-for="email in unarchivedEmails"
+          :key="email.id"
+          :class="['clickable', email.read ? 'read' : '']"
+          @click="openEmail(email)">
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>{{email.from}}</td>
+        <td>
+          <p><strong>{{email.subject}}</strong> - {{email.body}}</p>
+        </td>
+        <td class="date">{{format(new Date(email.sentAt), 'MMM do yyyy')}}</td>
+        <td><button @click="archiveEmail(email)">Archive</button></td>
+      </tr>
     </tbody>
   </table>
-
   <ModalView v-if="openedEmail" @closeModal="openedEmail = null">
     <MailView :email="openedEmail" />
   </ModalView>
@@ -29,15 +28,21 @@
   import MailView from '@/components/MailView.vue';
   import ModalView from '@/components/ModalView.vue';
 
+  import { ref } from 'vue';
+
   export default {
     async setup(){
       await new Promise(resolve => setTimeout(resolve, 1000))
-      let {data: emails} = await axios.get('http://localhost:3000/emails');
+      let {data: emails} = await axios.get('http://localhost:3000/emails')
       return {
         format,
-        emails,
-        openedEmail: null
+        emails: ref(emails),
+        openedEmail: ref(null)
       }
+    },
+    components: {
+      MailView,
+      ModalView
     },
     computed: {
       sortedEmails() {
@@ -49,18 +54,14 @@
         return this.sortedEmails.filter(e => !e.archived)
       }
     },
-    components: {
-      MailView,
-      ModalView
-    },
     methods: {
-      openEmail(email){
+      openEmail(email) {
         email.read = true
         this.updateEmail(email)
-        this.openedEmail = email;
+        this.openedEmail = email
       },
-      archiveEmail(email){
-        email.archived = true;
+      archiveEmail(email) {
+        email.archived = true
         this.updateEmail(email)
       },
       updateEmail(email) {
@@ -71,4 +72,5 @@
 </script>
 
 <style scoped>
+
 </style>

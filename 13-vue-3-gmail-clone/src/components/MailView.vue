@@ -7,9 +7,8 @@
 </template>
 
 <script>
-  import { format } from 'date-fns'
-  import marked from 'marked';
-
+  import  { format } from 'date-fns'
+  import marked from 'marked'
   export default {
     setup(){
       return {
@@ -25,3 +24,7 @@
     }
   }
 </script>
+
+<style scoped>
+
+</style>
