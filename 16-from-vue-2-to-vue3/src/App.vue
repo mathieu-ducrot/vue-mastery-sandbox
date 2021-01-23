@@ -6,26 +6,40 @@
     />
 
     <pre>{{ form }}</pre>
+
+    <BaseInput
+      v-model="email"
+      @blur="email = 'blurrr@its.cold'"
+      label="Email:"
+      type="email"
+      class="thicc"
+    />
+
+    <pre>{{ email }}</pre>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import SalutationName from './components/SalutationName'
+import BaseInput from './components/BaseInput'
 
 export default {
   name: 'App',
   components: {
-    SalutationName
+    SalutationName,
+    BaseInput
   },
   setup () {
     const form = reactive({
       salutation: '',
       name: ''
     })
+    const email = ref('')
 
     return {
-      form
+      form,
+      email
     }
   }
 }
@@ -36,7 +50,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
@@ -61,6 +74,9 @@ input,
 textarea {
   box-sizing: border-box;
   border: solid 1px rgba(0, 0, 0, 0.4);
+}
+input.thicc {
+  border-width: 4px;
 }
 textarea {
   width: 100%;
